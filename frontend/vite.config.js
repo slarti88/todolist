@@ -5,7 +5,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:4000',
+      '/todo-api': 'http://localhost:4000',
     },
   },
+  base: '/todo/'
 })
+

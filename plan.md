@@ -59,10 +59,10 @@ Each todo stored in `todos.json` as an array of objects:
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/todos` | Return all todos |
-| POST | `/api/todos` | Create a new todo |
-| PUT | `/api/todos/:id` | Update text, description, completed, category |
-| DELETE | `/api/todos/:id` | Delete a todo |
+| GET | `/todo-api/todos` | Return all todos |
+| POST | `/todo-api/todos` | Create a new todo |
+| PUT | `/todo-api/todos/:id` | Update text, description, completed, category |
+| DELETE | `/todo-api/todos/:id` | Delete a todo |
 
 - On every write, serialise the full array back to `todos.json`.
 - CORS enabled for `localhost:5173`.

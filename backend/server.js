@@ -26,14 +26,14 @@ function parseCategory(text) {
   return text.slice(0, idx).trim().toLowerCase();
 }
 
-// GET /api/todos
-app.get('/api/todos', (req, res) => {
+// GET /todo-api/todos
+app.get('/todo-api/todos', (req, res) => {
   const todos = readTodos();
   res.json(todos);
 });
 
-// POST /api/todos
-app.post('/api/todos', (req, res) => {
+// POST /todo-api/todos
+app.post('/todo-api/todos', (req, res) => {
   const { text } = req.body;
   if (!text || !text.trim()) {
     return res.status(400).json({ error: 'text is required' });
@@ -53,8 +53,8 @@ app.post('/api/todos', (req, res) => {
   res.status(201).json(newTodo);
 });
 
-// PUT /api/todos/:id
-app.put('/api/todos/:id', (req, res) => {
+// PUT /todo-api/todos/:id
+app.put('/todo-api/todos/:id', (req, res) => {
   const { id } = req.params;
   const todos = readTodos();
   const idx = todos.findIndex(t => t.id === id);
@@ -83,8 +83,8 @@ app.put('/api/todos/:id', (req, res) => {
   res.json(todo);
 });
 
-// DELETE /api/todos/:id
-app.delete('/api/todos/:id', (req, res) => {
+// DELETE /todo-api/todos/:id
+app.delete('/todo-api/todos/:id', (req, res) => {
   const { id } = req.params;
   const todos = readTodos();
   const idx = todos.findIndex(t => t.id === id);

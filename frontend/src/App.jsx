@@ -16,7 +16,7 @@ export default function App() {
   const [categoryFilter, setCategoryFilter] = useState('all');
 
   useEffect(() => {
-    fetch('/api/todos')
+    fetch('/todo-api/todos')
       .then(r => r.json())
       .then(data => setTodos(data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))));
   }, []);
@@ -33,7 +33,7 @@ export default function App() {
   });
 
   async function handleAdd(text) {
-    const res = await fetch('/api/todos', {
+    const res = await fetch('/todo-api/todos', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text }),
@@ -43,7 +43,7 @@ export default function App() {
   }
 
   async function handleUpdate(id, changes) {
-    const res = await fetch(`/api/todos/${id}`, {
+    const res = await fetch(`/todo-api/todos/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(changes),
@@ -54,7 +54,7 @@ export default function App() {
   }
 
   async function handleDelete(id) {
-    await fetch(`/api/todos/${id}`, { method: 'DELETE' });
+    await fetch(`/todo-api/todos/${id}`, { method: 'DELETE' });
     setTodos(prev => prev.filter(t => t.id !== id));
     if (selectedId === id) setSelectedId(null);
   }
