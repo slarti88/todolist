@@ -27,7 +27,17 @@ export default function App() {
 
   const filteredTodos = todos.filter(todo => {
     if (hideCompleted && todo.completed) return false;
-    if (dateFilter && todo.createdAt.slice(0, 10) !== dateFilter) return false;
+    if (dateFilter)
+    {
+      if (todo.completed && todo.completedAt.slice(0, 10) !== dateFilter)
+      {
+        return false;
+      }
+      // else if (todo.createdAt.slice(0, 10) !== dateFilter)
+      //{
+      //  return false;
+      //}
+    }
     if (categoryFilter !== 'all' && (todo.category || null) !== categoryFilter) return false;
     return true;
   });
@@ -73,13 +83,15 @@ export default function App() {
           categories={categories}
         />
         <Metrics todos={filteredTodos} />
-        <TodoList
-          todos={filteredTodos}
-          selectedId={selectedId}
-          onSelect={setSelectedId}
-          onUpdate={handleUpdate}
-          onDelete={handleDelete}
-        />
+        <div className="todo-list-scroll">
+          <TodoList
+            todos={filteredTodos}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
+        </div>
         <AddTodo onAdd={handleAdd} />
       </div>
       <div className="panel-column">
