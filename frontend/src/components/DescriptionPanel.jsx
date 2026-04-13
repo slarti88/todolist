@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function DescriptionPanel({ todo, onUpdate }) {
+export default function DescriptionPanel({ todo, onUpdate, onClose }) {
   const [desc, setDesc] = useState('');
 
   useEffect(() => {
@@ -23,6 +23,7 @@ export default function DescriptionPanel({ todo, onUpdate }) {
 
   return (
     <div className="description-panel">
+      <button className="panel-close-btn" onClick={onClose} aria-label="Close panel">&#8592; Back</button>
       <h2 className="panel-title">{todo.text}</h2>
       {todo.category && (
         <div className="panel-category">Category: {todo.category}</div>

@@ -33,10 +33,6 @@ export default function App() {
       {
         return false;
       }
-      // else if (todo.createdAt.slice(0, 10) !== dateFilter)
-      //{
-      //  return false;
-      //}
     }
     if (categoryFilter !== 'all' && (todo.category || null) !== categoryFilter) return false;
     return true;
@@ -94,8 +90,12 @@ export default function App() {
         </div>
         <AddTodo onAdd={handleAdd} />
       </div>
-      <div className="panel-column">
-        <DescriptionPanel todo={selectedTodo} onUpdate={handleUpdate} />
+      <div className={`panel-column${selectedTodo ? ' open' : ''}`}>
+        <DescriptionPanel
+          todo={selectedTodo}
+          onUpdate={handleUpdate}
+          onClose={() => setSelectedId(null)}
+        />
       </div>
     </div>
   );
